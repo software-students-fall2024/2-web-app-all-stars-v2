@@ -37,4 +37,5 @@ This application uses Flask. Follow these steps to set up and run the app:
 ## Task boards
 
 [Taskboard - Sprint 1](https://github.com/orgs/software-students-fall2024/projects/70)
+
 [Taskboard - Sprint 2](https://github.com/orgs/software-students-fall2024/projects/71)
