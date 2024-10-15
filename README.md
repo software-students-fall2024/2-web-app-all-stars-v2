@@ -16,22 +16,24 @@ This application uses Flask. Follow these steps to set up and run the app:
 
 1. Clone the repository to your local machine.
 
-2. Create a virtual environment.
+2. Navigate to the `app` directory in the repository
 
-3. Install dependencies:
+3. Create a virtual environment.
+
+4. Install dependencies:
    ```
    pip install -r requirements.txt
    ```
 
-4. Obtain the `.env` file containing the database connection string from a group member.
+5. Obtain the `.env` file containing the database connection string from a group member.
 
-5. Navigate to the `server` directory.
+6. Navigate to the `server` directory.
 
-6. Run the Flask app:
+7. Run the Flask app:
    ```
    flask run
    ```
-7. In your terminal you should see where the app is running with something similar (or the same as) `Running on http://127.0.0.1:5000` Copy and paste this local host address into your web browser, and you should have access to the application!
+8. In your terminal you should see where the app is running with something similar (or the same as) `Running on http://127.0.0.1:5000` Copy and paste this local host address into your web browser, and you should have access to the application!
 
 
 ## Task boards
