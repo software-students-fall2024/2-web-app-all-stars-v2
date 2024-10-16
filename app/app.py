@@ -56,11 +56,10 @@ def submit_form(store_location):
         'purchase_method': request.form.get('purchase_method')
     }
     add_transaction(**form_data)
-    info = get_transaction(form_data['email'])
-    info['_id'] = str(info['_id'])
-    info = dict(info)
-    print(info)
-    return render_template('create.html', store_location=store_location, added_transaction=info)
+    transaction = get_transaction(form_data['email'])
+    transaction['_id'] = str(transaction['_id'])
+    transaction = dict(transaction)
+    return render_template('create.html', store_location=store_location, added_transaction=transaction)
 
 @app.route('/edit/<store_location>')
 def edit_page(store_location):
@@ -86,8 +85,11 @@ def delete():
     email = request.form.get('customer_email')
     if email:
         try: 
+            transaction = get_transaction(email)
+            transaction['_id'] = str(transaction['_id'])
+            transaction = dict(transaction)
             delete_transaction(email)
-            return f"Transaction for {email} deleted successfully.", 200
+            return render_template('delete.html', transaction=transaction)
         except:
             return f"No transaction found for {email}.", 404
     return "Email is required.", 400
