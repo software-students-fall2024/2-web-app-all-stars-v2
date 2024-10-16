@@ -72,9 +72,18 @@ def get_to_edit():
     purchase_method = request.args.get('purchase_method')
     print(purchase_method)
     if get_transaction_to_edit(email) != "Transaction not found.":
-        edit_transaction(email, purchase_method)
+        old_transaction = get_transaction(email)
+        old_transaction['_id'] = str(old_transaction['_id'])
+        old_transaction = dict(old_transaction)
+
+        new_transaction = get_transaction(email)
+        new_transaction['_id'] = str(new_transaction['_id'])
+        new_transaction = dict(new_transaction)
+
+        return render_template('edit.html', old_transaction=old_transaction, new_transaction=new_transaction)
         ## Where will this go?
-    return get_transaction_to_edit(email)
+    else:
+        return render_template('edit.html', message="Transaction not found.")
 
 @app.route('/delete')
 def delete_page():

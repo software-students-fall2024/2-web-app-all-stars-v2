@@ -88,7 +88,7 @@
         >Input customer email you would like to edit:</label
       >
       <input type="email" id="customer_email" name="customer_email" required />
-      <input type="submit" value="Get Info" />
+      <input type="submit" value="Edit Info" />
         <br><br>
       <label for="purchase_method">Choose A New Purchase method:</label>
       <select id="purchase_method" name="purchase_method">
@@ -97,5 +97,22 @@
         <option value="Phone">Phone</option>
       </select>
     </form>
+    {% if message %}
+    <div>
+      <h1 style="text-align: center; margin-top: 20px">{{message}}</h1>
+    </div>
+    {% endif %}
+    {% if old_transaction %}
+    <div>
+      <h1 style="text-align: center; margin-top: 20px">Old Transaction</h1>
+      <pre><code id="json-display">{{ old_transaction | tojson(indent=4) }}</code></pre>
+    </div>
+    {% endif %}
+    {% if new_transaction %}
+    <div>
+      <h1 style="text-align: center; margin-top: 20px">New Transaction</h1>
+      <pre><code id="json-display">{{ new_transaction | tojson(indent=4) }}</code></pre>
+    </div>
+    {% endif %}
   </body>
 </html>
