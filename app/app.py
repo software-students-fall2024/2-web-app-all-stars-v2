@@ -75,7 +75,7 @@ def get_to_edit():
         old_transaction = get_transaction(email)
         old_transaction['_id'] = str(old_transaction['_id'])
         old_transaction = dict(old_transaction)
-
+        edit_transaction(email, purchase_method)
         new_transaction = get_transaction(email)
         new_transaction['_id'] = str(new_transaction['_id'])
         new_transaction = dict(new_transaction)
