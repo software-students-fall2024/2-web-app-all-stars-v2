@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify
 from bson.objectid import ObjectId
 from bson.decimal128 import Decimal128
 from connection import *
-from store_data import get_store_location
+from store_data import get_store_data
 from get_transactions import get_transactions
 from add_transaction import add_transaction
 from get_transaction_to_edit import get_transaction_to_edit
@@ -25,8 +25,10 @@ def index():
     return render_template('index.html')
 
 @app.route('/location/<store_location>')
-def location(store_location):    
-    store_data = get_store_location(store_location)
+
+def location(store_location):
+
+    store_data = get_store_data(store_location)
     store_data['total_revenue'] = "{:,.2f}".format(store_data['total_revenue'])
     
     return render_template('location.html',store_location=store_location, **store_data)
