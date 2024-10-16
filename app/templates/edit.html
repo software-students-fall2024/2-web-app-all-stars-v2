@@ -104,15 +104,7 @@
     {% endif %}
     {% if old_transaction %}
     <div>
-      <h1 style="text-align: center; margin-top: 20px">Old Transaction</h1>
-      <pre><code id="json-display">{{ old_transaction | tojson(indent=4) }}</code></pre>
-    </div>
-    {% endif %}
-    {% if new_transaction %}
-    <div>
-      <h1 style="text-align: center; margin-top: 20px">New Transaction</h1>
-      <pre><code id="json-display">{{ new_transaction | tojson(indent=4) }}</code></pre>
-    </div>
+      <h1 style="text-align: center; margin-top: 20px">Transaction Edited</h1>
     {% endif %}
   </body>
 </html>

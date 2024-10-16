@@ -95,12 +95,12 @@ def delete():
     if email:
         try: 
             transaction = get_transaction(email)
-            transaction['_id'] = str(transaction['_id'])
+        
             transaction = dict(transaction)
             delete_transaction(email)
             return render_template('delete.html', transaction=transaction)
-        except:
-            return f"No transaction found for {email}.", 404
+        except Exception as e:
+            return f"An error occurred: {str(e)}", 404
     return "Email is required.", 400
 
 if __name__ == '__main__':
