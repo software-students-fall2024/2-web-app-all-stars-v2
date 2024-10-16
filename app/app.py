@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 from bson.objectid import ObjectId
 from bson.decimal128 import Decimal128
 from connection import *
@@ -8,6 +8,8 @@ from add_transaction import add_transaction
 from get_transaction_to_edit import get_transaction_to_edit
 from edit_transaction import edit_transaction
 from delete_transaction import delete_transaction
+from get_transaction import get_transaction
+import json
 
 # Home Screen (Select location) 
 # Store information Screen
@@ -52,7 +54,11 @@ def submit_form(store_location):
         'purchase_method': request.form.get('purchase_method')
     }
     add_transaction(**form_data)
-    return form_data
+    info = get_transaction(form_data['email'])
+    info['_id'] = str(info['_id'])
+    info = dict(info)
+    print(info)
+    return render_template('create.html', store_location=store_location, added_transaction=info)
 
 @app.route('/edit/<store_location>')
 def edit_page(store_location):
@@ -83,37 +89,6 @@ def delete():
         except:
             return f"No transaction found for {email}.", 404
     return "Email is required.", 400
-
-
-# GET
-# @app.route('/get_store_data/<store_location>')
-# def get_store_data(store_location):
-#     return get_store_location(store_location)
-
-# GET
-# @app.route('/get_transactions/<store_location>')
-# def get_transaction_data(store_location): 
-#     return get_transactions(store_location)
-
-# POST
-# @app.route('/add/<item_name>/<int:quantity>/<float:price>/<store_location>/<gender>/<int:age>/<email>/<coupon_used>/<purchase_method>')
-# def add(item_name, quantity, price, store_location, gender, age, email, coupon_used, purchase_method): 
-#     add_transaction(item_name, quantity, price, store_location, gender, age, email, coupon_used, purchase_method)
-
-# GET
-# @app.route('/get_to_edit/<email>')
-# def get_to_edit(email):
-#     return get_transaction_to_edit(email)
-    
-# POST
-# @app.route('/edit/<email>/<purchase_method>')   
-# def edit(email, purchase_method):
-#     edit_transaction(email, purchase_method)
-
-# POST
-# @app.route('/delete/<email>')
-# def delete(email):
-#     delete_transaction(email)
 
 if __name__ == '__main__':
     app.run(debug=True)

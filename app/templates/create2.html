@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Submit Your Details</title>
-    {% if not added_transaction%}
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -16,132 +15,114 @@
         justify-content: center;
         height: 100vh;
         background-color: #f7f7f7;
-      }
-      h1 {
-        margin-bottom: 20px;
-      }
-      form {
-        background-color: white;
-        border: 2px solid black;
-        padding: 20px;
-        border-radius: 10px;
-        text-align: center;
-        width: 300px;
-      }
-      label {
-        display: block;
-        margin-bottom: 10px;
-        font-size: 18px;
-        color: black;
-      }
-      .box {
-        border: 2px solid black;
-        padding: 20px;
-        border-radius: 10px;
-        text-align: center;
-        margin-top: 40px;
-        background-color: white;
-      }
-    </style>
-    {% else %}
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        background-color: #f7f7f7;
-      }
-      h1 {
-        margin-bottom: 20px;
-      }
-      form {
-        background-color: white;
-        border: 2px solid black;
-        padding: 20px;
-        border-radius: 10px;
-        text-align: center;
-        width: 300px;
-      }
-      label {
-        display: block;
-        margin-bottom: 10px;
-        font-size: 18px;
-        color: black;
-      }
-      .box {
-        border: 2px solid black;
-        padding: 20px;
-        border-radius: 10px;
-        text-align: center;
-        margin-top: 40px;
-        background-color: white;
-      }
-      pre {
-        background-color: #f4f4f4;
-        padding: 10px;
-        border-radius: 5px;
       }
 
-      body {
-        padding-top: 25vh;
+      h1 {
+        margin-bottom: 20px;
+      }
+
+      form {
+        background-color: white;
+        border: 2px solid black;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        width: 300px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 18px;
+        color: black;
+      }
+
+      .box {
+        border: 2px solid black;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        margin-top: 40px;
+        background-color: white;
       }
     </style>
-    {% endif %}
   </head>
-  <body style="overflow: auto; max-height: 100vh">
-    <h1>Add Transaction - {{store_location}} Store</h1>
+  <body>
+    <h1> Add Transaction - {{store_location}} Store</h1>
     <form method="POST" action="/submit/{{ store_location }}">
       <label for="item_name">Enter item name:</label>
-      <input type="text" id="item_name" name="item_name" required />
+      <input
+        type="text"
+        id="item_name"
+        name="item_name"
+        value="Default Item"
+        required
+      />
       <br /><br />
 
       <label for="quantity">Enter quantity:</label>
-      <input type="number" id="quantity" name="quantity" required />
+      <input
+        type="number"
+        id="quantity"
+        name="quantity"
+        value="1"
+        required
+      />
       <br /><br />
 
       <label for="price">Enter price:</label>
-      <input type="number" step="0.01" id="price" name="price" required />
+      <input
+        type="number"
+        step="0.01"
+        id="price"
+        name="price"
+        value="9.99"
+        required
+      />
       <br /><br />
 
       <label for="gender">Enter gender (M/F):</label>
       <select id="gender" name="gender">
-        <option value="M">M</option>
+        <option value="M" selected>M</option>
         <option value="F">F</option>
       </select>
       <br /><br />
 
       <label for="age">Enter age:</label>
-      <input type="number" id="age" name="age" required /> <br /><br />
+      <input
+        type="number"
+        id="age"
+        name="age"
+        value="25"
+        required
+      />
+      <br /><br />
 
       <label for="email">Enter email:</label>
-      <input type="email" id="email" name="email" required /> <br /><br />
+      <input
+        type="email"
+        id="email"
+        name="email"
+        value="example@example.com"
+        required
+      />
+      <br /><br />
 
       <label for="coupon_used">Coupon used?:</label>
       <select id="coupon_used" name="coupon_used">
         <option value="yes">Yes</option>
-        <option value="no">No</option>
+        <option value="no" selected>No</option>
       </select>
       <br /><br />
 
       <label for="purchase_method">Purchase method:</label>
       <select id="purchase_method" name="purchase_method">
         <option value="In store">In store</option>
-        <option value="Online">Online</option>
+        <option value="Online" selected>Online</option>
         <option value="Phone">Phone</option>
       </select>
       <br /><br />
       <input type="submit" class="box" value="Submit" />
     </form>
-    {% if added_transaction %}
-    <div>
-      <h1 style="text-align: center; margin-top: 20px">Added Transaction</h1>
-      <pre><code id="json-display">{{ added_transaction | tojson(indent=4) }}</code></pre>
-    </div>
-    {% endif %}
   </body>
 </html>

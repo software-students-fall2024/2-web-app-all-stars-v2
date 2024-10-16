@@ -12,12 +12,12 @@ client = pymongo.MongoClient(database_url)
 db = client["sample_supplies"]
 collection = db["sales"]
 
-def get_transaction_to_edit(email):
+def get_transaction(email):
     
     query = {"customer.email": email}
     transaction = collection.find_one(query)
     
     if transaction:
-        return transaction.get("purchaseMethod", "Purchase method not found.")
+        return transaction
     else:
-        return "Transaction not found."
+        return {"error": "Transaction not found"}
