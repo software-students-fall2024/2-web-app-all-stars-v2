@@ -13,7 +13,7 @@ import json
 
 # Home Screen (Select location) 
 # Store information Screen
-# List of Transaction Screen (For selected location)    -read.html
+# List of Transaction Screen (For selected location)    -transaction.html
 # Add Transaction Screen (CREATE transaction)   -create.html
 # Edit Transaction Screen (UPDATE transaction)  -edit.html
 # Delete Transaction Screen (DELETE transaction)  - delete.html
@@ -36,7 +36,7 @@ def location(store_location):
 @app.route('/transactions/<store_location>')
 def transactions(store_location):
     transaction_data =  get_transactions(store_location)
-    return render_template('read.html', store_location=store_location, transaction_data=transaction_data['transactions'])
+    return render_template('transaction.html', store_location=store_location, transaction_data=transaction_data['transactions'])
 
 @app.route('/add_transaction_page/<store_location>')
 def add_transaction_page(store_location):
