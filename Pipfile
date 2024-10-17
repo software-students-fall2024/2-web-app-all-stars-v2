@@ -1,0 +1,27 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+blinker = "==1.8.2"
+certifi = "==2024.8.30"
+charset-normalizer = "==3.4.0"
+click = "==8.1.7"
+connection = "==2021.7.20"
+dnspython = "==2.7.0"
+flask = "==3.0.3"
+idna = "==3.10"
+itsdangerous = "==2.2.0"
+jinja2 = "==3.1.4"
+markupsafe = "==3.0.1"
+pymongo = "==4.10.1"
+python-dotenv = "==1.0.1"
+requests = "==2.32.3"
+urllib3 = "==2.2.3"
+werkzeug = "==3.0.4"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"
